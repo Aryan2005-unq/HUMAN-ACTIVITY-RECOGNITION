@@ -1,71 +1,60 @@
-Human Activity Recognition with CNN-LSTM and Gradio
-Overview
-This project implements a Human Activity Recognition (HAR) system using a hybrid deep learning model (CNN-LSTM) and an interactive Gradio web interface. The system processes time-series sensor data (e.g., accelerometer, gyroscope) to classify activities like walking, sitting, and running. It supports real-time predictions, batch processing, and data exploration.
+# Human Activity Recognition (HAR) System with CNN-LSTM
 
-Features
-Hybrid CNN-LSTM Model:
-Combines CNN for local feature extraction and LSTM for modeling temporal dependencies.
+This project is a Human Activity Recognition (HAR) system that uses a deep learning model (CNN + LSTM) to predict human activities from sensor data. The system features an interactive Gradio web interface for predictions, exploratory data analysis (EDA), and batch processing.
 
-Comprehensive Preprocessing:
-Data cleaning, missing value imputation, feature scaling, and segmentation into overlapping windows.
+## Features
+- **Predict Activity:** Predicts human activity from sensor data using a trained CNN+LSTM model.
+- **Prediction History:** Displays the last 10 predictions for easy tracking.
+- **Batch Prediction:** Upload your own CSV file for batch activity prediction.
+- **EDA Tabs:**
+  - Activity distribution in the training set
+  - Feature statistics
+  - Confusion matrix
+  - Per-class accuracy
 
-Interactive Gradio Interface:
+## Requirements
+- Python 3.7+
+- gradio
+- pandas
+- numpy
+- scikit-learn
+- tensorflow
+- matplotlib
+- Pillow
 
-Real-time and batch predictions
+Install dependencies with:
+```bash
+pip install -r requirements.txt
+```
 
-Visualization of prediction confidence and history
+## Dataset
+The code expects the following CSV files:
+- `train_har.csv` (training data)
+- `test.csv` (test data)
 
-Exploratory data analysis (EDA) tools
+Update the paths in `HAR_system.py` if your data is located elsewhere.
 
-Getting Started
-Prerequisites
-Python 3.7+
+## Usage
+1. Ensure your datasets are available at the specified paths.
+2. Install the required packages.
+3. Run the application:
+   ```bash
+   python HAR_system.py
+   ```
+4. Access the Gradio interface in your browser (the URL will be shown in the terminal).
 
-Recommended: virtual environment
+## File Structure
+- `HAR_system.py` — Main application code
+- `requirements.txt` — Python dependencies
+- `readme.md` — Project documentation
 
-Install Required Libraries
+## Example CSV Format
+Your CSV files should have columns for all sensor features, plus `Activity` and `subject` columns. Example:
 
-pip install gradio pandas numpy scikit-learn tensorflow matplotlib pillow
+| feature1 | feature2 | ... | Activity | subject |
+|----------|----------|-----|----------|---------|
+| 0.12     | -0.34    | ... | Walking  | 1       |
+| ...      | ...      | ... | ...      | ...     |
 
-Dataset
-Place your CSV files:
-
-train_har.csv
-
-test.csv
-
-Each file should include sensor readings and an Activity label.
-
-Running the App
-Ensure dataset files are in place.
-
-Run the application:
-
-python HAR_system.py
-The Gradio web interface will open in your browser.
-
-Usage
-Predict Activity:
-
-Predict on test samples or upload your own CSV for batch predictions.
-
-View prediction history and confidence.
-
-EDA Tabs:
-
-Explore activity distribution, feature statistics, confusion matrix, and per-class accuracy.
-
-Project Structure
-text
-├── train_har.csv
-├── test.csv
-├── HAR_system.py
-└── README.md
-Methodology
-Data preprocessing: numeric conversion, imputation, scaling, windowing
-
-Model: 1D CNN layers, LSTM layer, dense layers with dropout
-
-Evaluation: accuracy, confusion matrix, per-class accuracy
-
+## License
 This project is for educational and research purposes.
